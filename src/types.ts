@@ -59,7 +59,8 @@ export type QosProfile = {
 export type TopicDefinition = {
   name: string;
   type: string;
-  serializationFormat: string;
+  // eslint-disable-next-line @typescript-eslint/no-redundant-type-constituents
+  serializationFormat: "cdr" | string;
   offeredQosProfiles: QosProfile[];
 };
 
