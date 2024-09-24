@@ -1,4 +1,4 @@
-import { Duration, Time, areEqual as areTimesEqual } from "@foxglove/rostime";
+import { Duration, Time, areEqual as areTimesEqual } from "@lichtblick/rostime";
 
 import {
   QosPolicyDurability,
@@ -50,6 +50,7 @@ export function parseQosProfiles(data: string): QosProfile[] {
 function getQosProfiles(array: Obj[]): QosProfile[] {
   const profiles: QosProfile[] = [];
   for (const entryMaybe of array) {
+    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
     if (entryMaybe == undefined) {
       continue;
     }

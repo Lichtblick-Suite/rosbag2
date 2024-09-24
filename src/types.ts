@@ -1,4 +1,4 @@
-import { Duration, Time } from "@foxglove/rostime";
+import { Duration, Time } from "@lichtblick/rostime";
 
 export enum QosPolicyDurability {
   SystemDefault = 0,
@@ -59,6 +59,7 @@ export type QosProfile = {
 export type TopicDefinition = {
   name: string;
   type: string;
+  // eslint-disable-next-line @typescript-eslint/no-redundant-type-constituents
   serializationFormat: "cdr" | string;
   offeredQosProfiles: QosProfile[];
 };
