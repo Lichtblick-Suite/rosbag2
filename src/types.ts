@@ -1,4 +1,4 @@
-import { Duration, Time } from "@foxglove/rostime";
+import { Duration, Time } from "@lichtblick/rostime";
 
 export enum QosPolicyDurability {
   SystemDefault = 0,
@@ -59,7 +59,7 @@ export type QosProfile = {
 export type TopicDefinition = {
   name: string;
   type: string;
-  serializationFormat: "cdr" | string;
+  serializationFormat: string;
   offeredQosProfiles: QosProfile[];
 };
 

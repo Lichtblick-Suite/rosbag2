@@ -1,4 +1,4 @@
-import { fromNanoSec } from "@foxglove/rostime";
+import { fromNanoSec } from "@lichtblick/rostime";
 
 import type { RawMessage, TopicDefinition } from "./types";
 
@@ -9,12 +9,12 @@ export type MessageRow = {
 };
 
 export class RawMessageIterator implements AsyncIterableIterator<RawMessage> {
-  private dbIterator: IterableIterator<MessageRow>;
-  private topicsMap: Map<bigint, TopicDefinition>;
+  #dbIterator: IterableIterator<MessageRow>;
+  #topicsMap: Map<bigint, TopicDefinition>;
 
   constructor(dbIterator: IterableIterator<MessageRow>, topicsMap: Map<bigint, TopicDefinition>) {
-    this.dbIterator = dbIterator;
-    this.topicsMap = topicsMap;
+    this.#dbIterator = dbIterator;
+    this.#topicsMap = topicsMap;
   }
 
   [Symbol.asyncIterator](): AsyncIterableIterator<RawMessage> {
@@ -22,16 +22,16 @@ export class RawMessageIterator implements AsyncIterableIterator<RawMessage> {
   }
 
   async next(): Promise<IteratorResult<RawMessage>> {
-    const res = this.dbIterator.next();
+    const res = this.#dbIterator.next();
     if (res.done === true) {
       return { value: undefined, done: true };
     } else {
       const row = res.value;
 
       // Resolve topicId to a parsed topic row
-      const topic = this.topicsMap.get(row.topic_id);
+      const topic = this.#topicsMap.get(row.topic_id);
       if (topic == undefined) {
-        throw new Error(`Cannot find topic_id ${row.topic_id} in ${this.topicsMap.size} topics`);
+        throw new Error(`Cannot find topic_id ${row.topic_id} in ${this.#topicsMap.size} topics`);
       }
 
       const timestamp = fromNanoSec(row.timestamp);
