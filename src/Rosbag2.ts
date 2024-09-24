@@ -30,15 +30,15 @@ for (const schema of Object.values(foxgloveMessageSchemas)) {
   }
 }
 
-// Add the legacy lichtblick_msgs/ImageMarkerArray message definition
+// Add the legacy foxglove_msgs/ImageMarkerArray message definition
 const imageMarkerArray: MessageDefinition = {
-  name: "lichtblick_msgs/ImageMarkerArray",
+  name: "foxglove_msgs/ImageMarkerArray",
   definitions: [
     { type: "visualization_msgs/ImageMarker", isArray: true, name: "markers", isComplex: true },
   ],
 };
 ROS2_DEFINITIONS_ARRAY.push(imageMarkerArray);
-ROS2_TO_DEFINITIONS.set("lichtblick_msgs/msg/ImageMarkerArray", imageMarkerArray);
+ROS2_TO_DEFINITIONS.set("foxglove_msgs/msg/ImageMarkerArray", imageMarkerArray);
 
 export class Rosbag2 {
   #messageReaders_ = new Map<string, MessageReader>();
