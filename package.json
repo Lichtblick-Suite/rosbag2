@@ -23,7 +23,7 @@
     "name": "Lichtblick",
     "email": "lichtblick@bmwgroup.com"
   },
-  "homepage": "https://github.com/lichtblick/rosbag2",
+  "homepage": "https://github.com/lichtblick-suite/rosbag2",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
   "files": [
